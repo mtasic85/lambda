@@ -1,6 +1,10 @@
 #ifndef L_CODE_H
 #define L_CODE_H
 
+#include <stdint.h>
+
+struct l_code_t;
+
 #include "object.h"
 
 typedef struct l_code_t {

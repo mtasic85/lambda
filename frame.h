@@ -1,6 +1,8 @@
 #ifndef L_FRAME_H
 #define L_FRAME_H
 
+struct l_frame_t;
+
 #include "ctx.h"
 #include "object.h"
 
