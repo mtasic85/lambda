@@ -39,26 +39,29 @@ typedef struct l_cstring_t {
     char * items;
 } l_cstring_t;
 
-typedef struct l_func_arg_t {
-    enum {
-        L_FUNC_ARG_OBJECT,
-        L_FUNC_ARG_CBOOL,
-        L_FUNC_ARG_CINT,
-        L_FUNC_ARG_CFLOAT,
-        L_FUNC_ARG_CCHARP,
-        L_FUNC_ARG_CSTRING,
-        L_FUNC_ARG_CVOIDP
-    };
+typedef enum l_func_arg_type_t {
+    L_FUNC_ARG_OBJECT,
+    L_FUNC_ARG_CBOOL,
+    L_FUNC_ARG_CINT,
+    L_FUNC_ARG_CFLOAT,
+    L_FUNC_ARG_CCHARP,
+    L_FUNC_ARG_CSTRING,
+    L_FUNC_ARG_CVOIDP
+} l_func_arg_type_t;
 
-    union {
-        struct l_object_t * o;
-        bool b;
-        int64_t i;
-        double f;
-        char * c;
-        struct l_cstring_t s;
-        void * v;
-    };
+typedef union l_func_arg_value_t {
+    struct l_object_t * o;
+    bool b;
+    int64_t i;
+    double f;
+    char * c;
+    struct l_cstring_t s;
+    void * v;
+} l_func_arg_value_t;
+
+typedef struct l_func_arg_t {
+    enum l_func_arg_type_t type;
+    union l_func_arg_value_t value;
 } l_func_arg_t;
 
 typedef struct l_func_args_t {
@@ -66,15 +69,20 @@ typedef struct l_func_args_t {
     struct l_func_arg_t args[3];
 } l_func_args_t;
 
-#define L_REF(ctx, o) \
-    if (o) { \
-        o->rc++; \
+#define L_REF(ctx, obj) \
+    if (obj) { \
+        obj->rc++; \
     }
 
-#define L_UNREF(ctx, o) \
-    if (o) { \
-        o->rc--; \
-        if (o->rc == 0) l_object_del(ctx, (l_func_args_t){1, {.o: o}}); \
+#define L_UNREF(ctx, obj) \
+    if (obj) { \
+        obj->rc--; \
+        if (obj->rc == 0) { \
+            l_object_del( \
+                ctx, \
+                (l_func_args_t){1, {{L_FUNC_ARG_OBJECT, {.o=obj}}}} \
+            ); \
+        } \
     }
 
 #include "ctx.h"

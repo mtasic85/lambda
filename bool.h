@@ -16,4 +16,7 @@ typedef struct l_bool_t {
 struct l_object_t * l_bool_new_with_cbool(struct l_ctx_t * ctx, bool value);
 struct l_object_t * l_bool_new_with_object(struct l_ctx_t * ctx, struct l_object_t * a);
 
+struct l_object_t * l_bool_new(struct l_ctx_t * ctx, struct l_func_args_t args);
+struct l_object_t * l_bool_del(struct l_ctx_t * ctx, struct l_func_args_t args);
+
 #endif
