@@ -13,7 +13,7 @@ int main(int argc, char ** argv) {
     l_object_t * code = l_compiler_compile(compiler, module_path);
     l_object_t * module = l_ctx_exec(ctx, code);
     l_vm_add_module(vm, module);
-    
+
     L_UNREF(ctx, module);
     L_UNREF(ctx, code);
     l_compiler_del(compiler);

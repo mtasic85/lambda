@@ -34,6 +34,54 @@ typedef struct l_object_t {
     L_OBJECT_HEAD
 } l_object_t;
 
+typedef enum l_func_args_flag_t {
+    L_FUNC_ARGS_FLAG_NO_ARGS,
+    L_FUNC_ARGS_FLAG_1_ARG,
+    L_FUNC_ARGS_FLAG_2_ARG,
+    L_FUNC_ARGS_FLAG_3_ARG,
+    L_FUNC_ARGS_FLAG_ARGS,
+    L_FUNC_ARGS_FLAG_KWARGS,
+    L_FUNC_ARGS_FLAG_ARGS_KWARGS,
+    L_FUNC_ARGS_FLAG_CBOOL,
+    L_FUNC_ARGS_FLAG_CINT,
+    L_FUNC_ARGS_FLAG_CFLOAT,
+    L_FUNC_ARGS_FLAG_CCHARP,
+    L_FUNC_ARGS_FLAG_CSTRING,
+    L_FUNC_ARGS_FLAG_CVOIDP
+} l_func_args_flag_t;
+
+typedef struct l_func_args_2_args_t {
+    struct l_object_t * o0;
+    struct l_object_t * o1;
+} l_func_args_2_args_t;
+
+typedef struct l_func_args_3_args_t {
+    struct l_object_t * o0;
+    struct l_object_t * o1;
+    struct l_object_t * o2;
+} l_func_args_3_args_t;
+
+typedef struct l_cstring_t {
+    size_t len;
+    char * items;
+} l_cstring_t;
+
+typedef union l_func_args_args_t {
+    struct l_object_t * o;
+    struct l_func_args_2_args_t oo;
+    struct l_func_args_3_args_t ooo;
+    bool b;
+    int64_t i;
+    double f;
+    char * cc;
+    struct l_cstring_t cs;
+    void * cv;
+} l_func_args_args_t;
+
+typedef struct l_func_args_t {
+    enum l_func_args_flag_t flag;
+} l_func_args_t;
+
 #define L_REF(ctx, o) \
     if (o) { \
         o->rc++; \

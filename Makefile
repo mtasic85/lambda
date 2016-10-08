@@ -1,6 +1,6 @@
 # CC=gcc
 CC=musl-gcc
-CFLAGS=-c -Wall -O0 -g
+CFLAGS=-c -Wall -Og -std=c11
 LDFLAGS=-lm -lpthread
 SOURCES=object.c bool.c vm.c ctx.c frame.c compiler.c main.c
 OBJECTS=$(SOURCES:.c=.o)
