@@ -6,6 +6,7 @@
 #include "object.h"
 
 typedef struct l_dict_entry_t {
+    uint32_t hash;
     struct l_object_t * key;
     struct l_object_t * value;
 } l_dict_entry_t;
