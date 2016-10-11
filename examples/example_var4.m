@@ -1,5 +1,5 @@
 a = {'x': {}}
-a = a.set('x', a.get('x').set('y': 10))
+a = a.set('x', a.get('x').set('y', 10))
 
 class A
     def __init__(self)
@@ -14,6 +14,13 @@ class A
 
 a = A()
 a = a.set_x({'y': {}})
-a = a.set_x(a.get_x().set('y': {}))
+a = a.set_x(a.get_x().set('y', {}))
 
 a = A().set_x({'y': {}})
+
+s = []
+    .extend(range(10))
+    .map(def (n) return n ** 2.0)
+    .map(def (n) return n ** 0.5)
+    .map(int)
+    .reduce(def(n, prev=0) return n + prev)

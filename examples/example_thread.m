@@ -36,9 +36,11 @@ a = [
     [
         for t in [
             for i in range(10)
-                t = Thread(def()
-                    b = {}
-                    return b
+                t = Thread(
+                    (def()
+                        b = {}
+                        return b
+                    )
                 )
                 yield t
         ]
@@ -48,3 +50,12 @@ a = [
         r = t.join()
         yield r
 ]
+
+
+a = Thread.map(
+    range(10),
+    (def()
+        b = {}
+        return b
+    )
+).start().join()
