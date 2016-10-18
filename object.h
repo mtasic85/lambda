@@ -23,6 +23,7 @@ typedef enum l_type_t {
     L_TYPE_BYTES,
     L_TYPE_STR,
     L_TYPE_LIST,
+    L_TYPE__LIST,
     L_TYPE_DICT,
     L_TYPE_SET,
     L_TYPE_CODE,
