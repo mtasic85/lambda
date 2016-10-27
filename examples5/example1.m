@@ -85,3 +85,13 @@ a3 = a = a.append(3) # [1, 2, 3]
 a0 is a1
 a1 is a2
 a2 is a3
+
+
+import immutable from 'immutable'
+a0 = a = immutable.list()
+a1 = a = a.append(1) # [1]
+a1 = a = a.append(2) # [1, 2]
+a3 = a = a.append(3) # [1, 2, 3]
+a0 is not a1
+a1 is not a2
+a2 is not a3
