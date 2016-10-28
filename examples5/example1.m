@@ -196,7 +196,7 @@ def wait(tasks) {
 
   while {
     for task in tasks {
-      if task in done_tasks or taks in error_tasks {
+      if task in done_tasks or task in error_tasks {
         continue
       }
 
