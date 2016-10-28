@@ -174,7 +174,7 @@ def fetch(options) {
 
   response_buf = []
 
-  for buf in s.recv(1024) {
+  for buf in s.recv(1024) { # IO
     response_buf.append(buf)
     _ = yield
   }
@@ -219,4 +219,4 @@ def wait(tasks) {
   return done_tasks, error_tasks
 }
 
-wait(tasks)
+done_tasks, error_tasks = wait(tasks)
